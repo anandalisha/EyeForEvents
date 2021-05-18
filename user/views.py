@@ -13,10 +13,10 @@ def home(request):
 def profile(request):
     return render(request,"user/profile.html")
 
-def login_user(request):
+def login(request):
     if request.method == "POST":
         # if someone fills out form , Post it
-        username = request.POST["username"]
+        email = request.POST["email"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
         if user is not None:
@@ -33,7 +33,7 @@ def login_user(request):
         return render(request, "user/login.html", {})
 
 
-def logout_user(request):
+def logout(request):
     logout(request)
     messages.success(request, ("Youre now logged out"))
     return redirect("home")
